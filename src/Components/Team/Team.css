@@ -1,0 +1,28 @@
+.team {
+  background: rgba(25, 35, 40, 0.5);
+}
+.small-heading {
+  color: #FF004C;
+}
+.content {
+  color: rgba(255, 255, 255, 0.8);
+}
+.team-card {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.social-btn {
+  background-color: #040c12;
+}
+
+.social-div {
+  visibility: hidden;
+  /* transition: all 0.5s ease-in; */
+}
+.squaresImg {
+    visibility: hidden;
+}
+.team-card:hover .social-div,
+.team-card:hover .squaresImg {
+  visibility: visible;
+}

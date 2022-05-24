@@ -1,0 +1,30 @@
+.roadmap-cards{
+  background: rgba(255, 255, 255, 0.05);
+}
+.roadmap-card-heading{
+    color: #FF004C;
+}
+.small-heading {
+    color: #FF004C;
+  }
+  .content {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .roadmapMiddleLine{
+    height: 79.333333%;
+  }
+  @media screen and (max-width: 948px) {
+    .roadmapMiddleLine{
+      height: 80.333333%;
+      }   
+  }
+  @media screen and (max-width: 877px) {
+    .roadmapMiddleLine{
+      height: 85.333333%;
+      }   
+  }
+  @media screen and (max-width: 820px) {
+    .roadmapMiddleLine{
+        height: 100%;
+      }   
+  }

@@ -1,0 +1,52 @@
+.small-heading {
+  color: #FF004C;
+}
+.content {
+  color: rgba(255, 255, 255, 0.8);
+}
+.cardOdd {
+  background: rgba(255, 255, 255, 0.05);
+}
+.cardEven {
+  background-color: #040C12;
+}
+.mainGrid {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark {
+  background-color: #040C12;
+}
+
+@media screen and (min-width: 766px) {
+  .changeToDark {
+    background-color: transparent;
+  }
+  .changeToLight {
+    background-color: #040C12;
+  }
+}
+@media screen and (max-width: 766px) {
+  .changeToDark {
+    background-color: #040C12;
+  }
+  .changeToLight {
+    background-color: transparent;
+  }
+}
+@media screen and (max-width: 640px) {
+  .changeToDark {
+    background-color: transparent;
+  }
+  .changeToLight {
+    background-color: transparent;
+  }
+  .smallDark{
+    background-color: #040C12;
+  }
+  .smallLight{
+    background-color: transparent;
+  }
+}
+
+

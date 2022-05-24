@@ -1,0 +1,24 @@
+.header{
+    background-image: url("./../../assets/headerBG.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 790px;
+}
+.starsBg{
+    background-image: url("./../../assets/headerStars.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.live{
+    color: #FF004C;
+}
+.mint-btn{
+    background-color: #FF004C;
+}
+@media screen and (max-width: 766px) {
+    .header{
+        height: 600px;
+    }
+}

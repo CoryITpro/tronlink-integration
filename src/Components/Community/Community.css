@@ -1,0 +1,26 @@
+.whiteList-btn{
+    background-color: #FF004C;
+}
+.dis-btn{
+    background-color: #5865F2;
+}
+.social-com-btn{
+    background: rgba(255, 255, 255, 0.1);
+}
+.social-design{
+    display: none;
+    transition: all 0.5s ease-out;
+}
+.social-com-btn:hover .social-design{
+    display: block;
+}
+.footerBg{
+    background-image: url("./../../assets//footerBG.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+.footer-link{
+  color: rgba(255, 255, 255, 0.8);
+}
