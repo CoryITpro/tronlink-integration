@@ -2,14 +2,49 @@ import { Container } from '@mui/material'
 import React from 'react'
 import { Navbar } from '../Navbar/Navbar'
 import mintbtnShape from './../../assets/mintbtnShape.png'
-import config from "../../config"
+import config, {abi} from "../../config"
 import './Header.css'
 
-export const Header = (props: any) => {
-  const { connectWallet, walletAddress } = props
+export const Header = (props) => {
+  const { connectWallet, walletAddress, setStatus } = props
   const doMint =  async () => {
-    let instance = await window.tronWeb.contract().at(config.contractAddress);
-    console.log(instance)
+    try {
+      const contract = await window.tronWeb.contract().at(config.contractAddress)
+      const ownerAddress = await contract.owner().call()
+      const myAddress = window.tronWeb.address.toHex(walletAddress)
+      const param = [{
+        type: 'uint256',
+        value: 1
+      }]
+      var options = {
+        feeLimit:100000000,
+        callValue: 0
+      }
+      if (ownerAddress != myAddress) {
+        const cost = await contract.cost().call()
+        options.callValue = cost.toNumber()
+      }
+
+      const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(
+        config.contractAddress,
+        "mint(uint256)",
+        options,
+        param,
+        walletAddress
+      );
+      const signedTransaction = await window.tronWeb.trx.sign(transaction.transaction, false)
+      const minted = await window.tronWeb.trx.sendRawTransaction(signedTransaction);
+      setStatus({
+        message: "Minting done",
+        color: 'info'
+      })
+    } catch(e) {
+      console.log(e)
+      setStatus({
+        message: e,
+        color: 'info'
+      })
+    }
   }
 
   return (

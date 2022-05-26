@@ -16,7 +16,10 @@ export const connectWallet = async (props) => {
       } else {
         setWallet("")
         setCookie("selectedWallet", "", 365)
-        changeStatus("Wallet is installed but you must first log in.")
+        changeStatus({
+          color: 'warning',
+          message: 'Wallet is installed but you must first log in.'
+        })
       }
     } else {
       connectWindow(props)
@@ -24,7 +27,10 @@ export const connectWallet = async (props) => {
   } else {
     setWallet("")
     setCookie("selectedWallet", "", 365)
-    changeStatus("You must install TronLink, a virtual Tron wallet, in your browser.")
+    changeStatus({
+      color: 'warning',
+      message: 'You must install TronLink, a virtual Tron wallet, in your browser.'
+    })
   }
 }
 
@@ -48,7 +54,10 @@ export const listenWalletChanges = (props) => {
         case "disconnect":
         case "disconnectWeb":
           setWallet("")
-          setStatus("Disconnected")
+          setStatus({
+            color: 'warning',
+            message: 'Disconnected'
+          })
           break;
         default:
           break;
@@ -67,19 +76,25 @@ const connectWindow = (props) => {
         clearInterval(tmpTimer1);
         setWallet("")
         setCookie("selectedWallet", "", 365)
-        changeStatus(" ")
+        changeStatus(null)
       } else {
         if (window.tronLink.ready && window.tronWeb.defaultAddress && window.tronWeb.defaultAddress.base58) {
           clearInterval(tmpTimer1);
-          window.tronWeb.setFullNode(config.httpAPI);
-          window.tronWeb.setSolidityNode(config.httpAPI);
-          if (window.tronWeb.setHeader && window.tronWeb.fullNode.host === config.httpAPI) {
-            window.tronWeb.setHeader({ 'TRON-PRO-API-KEY': config.TRON_API_KEY });
+          // window.tronWeb.setFullNode(config.httpAPI);
+          // window.tronWeb.setSolidityNode(config.httpAPI);
+          if (window.tronWeb.fullNode.host === config.httpAPI) {
+            // window.tronWeb.setHeader({ 'TRON-PRO-API-KEY': config.TRON_API_KEY });
             setWallet(window.tronWeb.defaultAddress.base58)
             setCookie("selectedWallet", window.tronWeb.defaultAddress.base58, 365)
-            changeStatus("Connected!")
+            changeStatus({
+              color: 'success',
+              message: 'Connected!'
+            })
           } else {
-            changeStatus("Please change to the " + config.chainName);
+            changeStatus({
+              color: 'info',
+              message: 'Please change to the ' + config.chainName
+            });
             setWallet("")
           }
         }

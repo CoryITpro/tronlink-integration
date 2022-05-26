@@ -16,14 +16,11 @@ import {
 
 export const Home = () => {
     const [walletAddress, setWallet] = useState("");
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState(null);
     const [changed, setChanged] = useState(true);
     const changeStatus = (status) => {
         setStatus(status)
-        if (changed)
-            setChanged(false)
-        else
-            setChanged(true)
+        changed ? setChanged(false) : setChanged(true)
     }
 
     useEffect(() => {
@@ -34,17 +31,19 @@ export const Home = () => {
     }
 
     useEffect(() => {
-        if (status)
-            if (walletAddress)
-                NotificationManager.success(status);
+        if (status) {
+            if (status.color == 'success')
+                NotificationManager.success(status.message);
+            else if (status.color == 'warning')
+                NotificationManager.warning(status.message);
             else
-                NotificationManager.warning(status);
-
+                NotificationManager.info(status.message);
+        }
     }, [status, changed])
 
     return (
         <div>
-            <Header connectWallet={connectWalletPressed} walletAddress={walletAddress}></Header>
+            <Header connectWallet={connectWalletPressed} walletAddress={walletAddress} setStatus={setStatus}></Header>
             <div className="h-52 zigzagShapes">
             </div>
             <About></About>
